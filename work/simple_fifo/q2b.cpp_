@@ -102,7 +102,7 @@ class fifo : public sc_channel, public write_if, public read_if {
 
 class producer : public sc_module {
    public:
-	sc_port<write_if> out;
+	sc_fifo_out<char> out;
 
 	SC_HAS_PROCESS(producer);
 
@@ -115,16 +115,13 @@ class producer : public sc_module {
 		const char *str = "Visit www.accellera.org and see what SystemC can do "
 		                  "for you today!\n";
 
-		while (*str) {
-            wait(30, SC_NS);
-            out->write(*str++);
-        }
+		while (*str) out->write(*str++);
 	}
 };
 
 class consumer : public sc_module {
    public:
-	sc_port<read_if> in;
+	sc_fifo_in<char> in;
 
 	SC_HAS_PROCESS(consumer);
 
@@ -139,32 +136,28 @@ class consumer : public sc_module {
 
 		while (true) {
 			in->read(c);
-			wait(30, SC_NS);
-            int time = sc_time_stamp().value() / 1000;
-			cout << c << " " << time << "ns" << endl;
+			cout << c << flush;
 
-			// if (in->num_available() == 1)
-			// 	cout << "<1>" << flush;
-			// if (in->num_available() == 9)
-			// 	cout << "<9>" << flush;
+			if (in->num_available() == 1)
+				cout << "<1>" << flush;
+			if (in->num_available() == 9)
+				cout << "<9>" << flush;
 		}
 	}
 };
 
 class top : public sc_module {
    public:
-	fifo *fifo_inst;
+	sc_fifo<char> fifo_inst;
 	producer *prod_inst;
 	consumer *cons_inst;
 
-	top(sc_module_name name) : sc_module(name) {
-		fifo_inst = new fifo("Fifo1");
-
+	top(sc_module_name name) : sc_module(name), fifo_inst(10) {
 		prod_inst = new producer("Producer1");
-		prod_inst->out(*fifo_inst);
+		prod_inst->out(fifo_inst);
 
 		cons_inst = new consumer("Consumer1");
-		cons_inst->in(*fifo_inst);
+		cons_inst->in(fifo_inst);
 	}
 };
 
