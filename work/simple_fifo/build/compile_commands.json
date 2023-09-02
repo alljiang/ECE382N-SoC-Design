@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/mnt/d/Github/ECE382N-SoC-Design/work/simple_fifo/build",
+  "command": "/usr/bin/clang++   -g -o CMakeFiles/simple_fifo.dir/simple_fifo.cpp.o -c /mnt/d/Github/ECE382N-SoC-Design/work/simple_fifo/simple_fifo.cpp",
+  "file": "/mnt/d/Github/ECE382N-SoC-Design/work/simple_fifo/simple_fifo.cpp"
+}
+]
