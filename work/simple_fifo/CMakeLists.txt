@@ -41,4 +41,4 @@
 
 add_executable (simple_fifo simple_fifo.cpp)
 target_link_libraries (simple_fifo SystemC::systemc)
-# configure_and_add_test (simple_fifo)
+configure_and_add_test (simple_fifo)

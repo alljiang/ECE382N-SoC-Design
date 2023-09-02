@@ -154,8 +154,9 @@ class top : public sc_module {
 	consumer *cons_inst;
 
 	top(sc_module_name name) : sc_module(name), fifo_inst(10) {
-        // fifo_inst = new fifo("Fifo1");
-        cout << "fifo_inst.num_available() = " << fifo_inst.num_available() << endl;
+		// fifo_inst = new fifo("Fifo1");
+		cout << "fifo_inst.num_available() = " << fifo_inst.num_available()
+		     << endl;
 
 		prod_inst = new producer("Producer1");
 		prod_inst->out(fifo_inst);

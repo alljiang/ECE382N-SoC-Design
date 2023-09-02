@@ -1,3 +1,0 @@
-/mnt/d/Github/ECE382N-SoC-Design/work/simple_fifo/build/CMakeFiles/simple_fifo.dir
-/mnt/d/Github/ECE382N-SoC-Design/work/simple_fifo/build/CMakeFiles/edit_cache.dir
-/mnt/d/Github/ECE382N-SoC-Design/work/simple_fifo/build/CMakeFiles/rebuild_cache.dir

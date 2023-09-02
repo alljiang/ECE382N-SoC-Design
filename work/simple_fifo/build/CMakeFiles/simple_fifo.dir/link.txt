@@ -1,1 +1,0 @@
-/usr/bin/clang++ -g -rdynamic CMakeFiles/simple_fifo.dir/simple_fifo.cpp.o -o simple_fifo  -lSystemC::systemc 
